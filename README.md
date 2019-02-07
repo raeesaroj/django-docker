@@ -1,7 +1,7 @@
 # SETUP
 
 1. Clone this repository
-2. Install docker and docker-compose
+2. Install [docker](https://get.docker.com/) and [docker-compose](https://docs.docker.com/compose/install/)
 3. Create a symlink with name docker-compose.yml to docker-compose.local.yml
 4. Run external services `docker-compose -f external_services.yml up -d`
 5. Run the server `docker-compose up -d`
