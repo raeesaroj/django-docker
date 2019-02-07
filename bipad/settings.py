@@ -25,7 +25,7 @@ SECRET_KEY = '*q0n!x1vop1)mt2go)qf6*7)^69l)!&pr%(k)*g@_f$*n5@dw-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.environ.get('SERVER_ALLOWED_HOST', '*')]
 
 
 # Application definition
@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'bipad.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': os.environ.get('DATABASE_NAME', 'postgres'),
+        'USER': os.environ.get('DATABASE_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'postgres'),
+        'PORT': os.environ.get('DATABASE_PORT', '5432'),
+        'HOST': os.environ.get('DATABASE_HOST', 'db'),
     }
 }
 
