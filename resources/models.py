@@ -1,6 +1,6 @@
 from django.contrib.gis.db import models
-from federal.models import Ward
 from django.contrib.postgres.fields import JSONField
+from federal.models import Ward
 
 
 class Resource(models.Model):

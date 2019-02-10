@@ -19,4 +19,8 @@ class Inventory(TimeStampedModal):
     title = models.CharField(max_length=255)
     amount = models.IntegerField()
     scale = models.CharField(max_length=25, choices=SCALES)
-    resource = models.ForeignKey(Resource, related_name='inventories', on_delete=models.CASCADE)
+    resource = models.ForeignKey(
+        Resource,
+        related_name='inventories',
+        on_delete=models.CASCADE
+    )
