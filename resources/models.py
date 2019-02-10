@@ -15,7 +15,7 @@ class Resource(models.Model):
         (TOURISM, 'tourism'),
     )
 
-    name = models.CharField(max_length=25)
+    title = models.CharField(max_length=25)
     description = models.TextField(null=True, blank=True, default=None)
     type = models.CharField(max_length=25, choices=TYPES)
     point = models.PointField(null=True, blank=True, default=None)
@@ -26,3 +26,6 @@ class Resource(models.Model):
     )
     # TODO: separate tables
     detail = JSONField(null=True, blank=True, default=None)
+
+    def __str__(self):
+        return self.title

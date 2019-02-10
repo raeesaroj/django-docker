@@ -11,3 +11,6 @@ class Hazard(TimeStampedModal):
     icon = models.FileField(upload_to='hazard-icons/')
     style = JSONField(default=None, null=True, blank=True)
     related_resources = models.ManyToManyField(Resource)
+
+    def __str__(self):
+        return self.title

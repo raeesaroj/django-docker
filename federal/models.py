@@ -4,6 +4,9 @@ from django.db import models
 class Province(models.Model):
     title = models.CharField(max_length=25)
 
+    def __str__(self):
+        return self.title
+
 
 class District(models.Model):
     title = models.CharField(max_length=25)
@@ -12,6 +15,9 @@ class District(models.Model):
         related_name='districts',
         on_delete=models.PROTECT,
     )
+
+    def __str__(self):
+        return self.title
 
 
 class Municipality(models.Model):
@@ -22,6 +28,9 @@ class Municipality(models.Model):
         on_delete=models.PROTECT,
     )
 
+    def __str__(self):
+        return self.title
+
 
 class Ward(models.Model):
     title = models.CharField(max_length=25)
@@ -30,3 +39,6 @@ class Ward(models.Model):
         related_name='wards',
         on_delete=models.PROTECT,
     )
+
+    def __str__(self):
+        return self.title

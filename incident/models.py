@@ -31,3 +31,6 @@ class Incident(TimeStampedModal):
         Ward,
         related_name='incidents',
     )
+
+    def __str__(self):
+        return self.title
