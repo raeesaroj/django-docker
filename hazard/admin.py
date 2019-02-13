@@ -1,4 +1,7 @@
 from django.contrib import admin
-from .models import Hazard
+from .models import (
+    Hazard,
+    HazardResources,
+)
 
-admin.site.register(Hazard)
+admin.site.register([Hazard, HazardResources])

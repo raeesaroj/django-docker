@@ -1,6 +1,8 @@
 from django.db import models
-from bipad.models import TimeStampedModal
+from django.db.models import Q
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.postgres.fields import JSONField
+from bipad.models import TimeStampedModal
 from resources.models import Resource
 
 
@@ -8,9 +10,22 @@ class Hazard(TimeStampedModal):
 
     title = models.CharField(max_length=250)
     description = models.TextField()
-    icon = models.FileField(upload_to='hazard-icons/')
+    icon = models.FileField(
+        upload_to='hazard-icons/',
+        default=None, null=True, blank=True
+    )
     style = JSONField(default=None, null=True, blank=True)
-    related_resources = models.ManyToManyField(Resource)
+    resources = models.ManyToManyField(ContentType, through="HazardResources")
 
     def __str__(self):
         return self.title
+
+
+class HazardResources(models.Model):
+    hazard = models.ForeignKey(Hazard, on_delete=models.CASCADE)
+    resource = models.ForeignKey(
+        ContentType,
+        limit_choices_to=Q(app_label='resources') & ~Q(model='resource'),
+        on_delete=models.CASCADE
+    )
+    weight = models.IntegerField(default=0)

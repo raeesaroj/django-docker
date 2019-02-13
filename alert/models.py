@@ -6,8 +6,17 @@ from event.models import Event
 
 
 class Alert(TimeStampedModal):
+
+    DHM = 'dhm'
+    OTHERS = 'other'
+
+    SOURCES = (
+        (DHM, 'dhm'),
+        (OTHERS, 'Other'),
+    )
+
     title = models.CharField(max_length=255)
-    source = models.CharField(max_length=120)
+    source = models.CharField(max_length=255, choices=SOURCES, default=OTHERS)
     description = models.TextField()
     verified = models.BooleanField(default=False)
     hazard = models.ForeignKey(

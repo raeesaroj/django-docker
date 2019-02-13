@@ -23,6 +23,8 @@ ALLOWED_HOSTS = [os.environ.get('SERVER_ALLOWED_HOST', '*')]
 # Application definition
 
 INSTALLED_APPS = [
+    'polymorphic',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
