@@ -3,22 +3,48 @@ from bipad.models import TimeStampedModal
 from resources.models import Resource
 
 
-class Inventory(TimeStampedModal):
+class Category(models.Model):
+    title = models.CharField(max_length=255, unique=True)
+    description = models.TextField(null=True, blank=True, default=None)
 
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "categories"
+
+
+class Item(models.Model):
     KG = 'kg'
     LITRE = 'litre'
     METER_SQUARE = 'm2'
     PCS = 'pcs'
+    CARTOON = 'cartoon'
 
-    SCALES = (
+    UNITS = (
         (KG, 'KG'),
         (LITRE, 'Litre'),
         (METER_SQUARE, 'm2'),
         (PCS, 'PCS'),
+        (CARTOON, 'Cartoon'),
     )
-    title = models.CharField(max_length=255)
-    amount = models.IntegerField()
-    scale = models.CharField(max_length=25, choices=SCALES)
+    title = models.CharField(max_length=255, unique=True)
+    description = models.TextField(null=True, blank=True, default=None)
+    unit = models.CharField(max_length=25, choices=UNITS)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True, blank=True, default=None
+    )
+
+    def __str__(self):
+        return '{} ({})'.format(self.title, self.unit)
+
+
+class Inventory(TimeStampedModal):
+
+    item = models.ForeignKey(Item, on_delete=models.PROTECT)
+    amount = models.PositiveIntegerField()
     resource = models.ForeignKey(
         Resource,
         related_name='inventories',
@@ -26,7 +52,7 @@ class Inventory(TimeStampedModal):
     )
 
     def __str__(self):
-        return self.title
+        return str(self.item)
 
     class Meta:
         verbose_name_plural = "inventories"

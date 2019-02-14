@@ -2,14 +2,12 @@ from django.db import models
 from django.db.models import Q
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.postgres.fields import JSONField
-from bipad.models import TimeStampedModal
 from resources.models import Resource
 
 
-class Hazard(TimeStampedModal):
-
-    title = models.CharField(max_length=250)
-    description = models.TextField()
+class Hazard(models.Model):
+    title = models.CharField(max_length=250, unique=True)
+    description = models.TextField(default=None, null=True, blank=True)
     icon = models.FileField(
         upload_to='hazard-icons/',
         default=None, null=True, blank=True

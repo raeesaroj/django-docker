@@ -24,5 +24,3 @@ class EducationAdmin(ResourceAdmin):
 class HealthAdmin(ResourceAdmin):
     base_model = Health
     show_in_index = True
-
-# admin.site.register(Education, ResourceAdmin)

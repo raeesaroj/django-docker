@@ -1,0 +1,170 @@
+[
+  {
+    "model": "hazard.hazard",
+    "pk": 1,
+    "fields": {
+      "title": "Air Crash"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 2,
+    "fields": {
+      "title": "Animal Terror"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 3,
+    "fields": {
+      "title": "Avalanche"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 4,
+    "fields": {
+      "title": "Boat Capsize"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 5,
+    "fields": {
+      "title": "Bridge Collapse"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 6,
+    "fields": {
+      "title": "Cold Wave"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 7,
+    "fields": {
+      "title": "Drowning"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 8,
+    "fields": {
+      "title": "Earthquake"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 9,
+    "fields": {
+      "title": "Epidemic"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 10,
+    "fields": {
+      "title": "Fire"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 11,
+    "fields": {
+      "title": "Flood"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 12,
+    "fields": {
+      "title": "Forest Fire"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 13,
+    "fields": {
+      "title": "Hailstone"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 14,
+    "fields": {
+      "title": "Heavy Rainfall"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 15,
+    "fields": {
+      "title": "Helicopter Crash"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 16,
+    "fields": {
+      "title": "High Altitude"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 17,
+    "fields": {
+      "title": "Landslide"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 18,
+    "fields": {
+      "title": "Other"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 19,
+    "fields": {
+      "title": "Rainfall"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 20,
+    "fields": {
+      "title": "Snake Bite"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 21,
+    "fields": {
+      "title": "Snow Storm"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 22,
+    "fields": {
+      "title": "Storm"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 23,
+    "fields": {
+      "title": "Thunderbolt"
+    }
+  },
+  {
+    "model": "hazard.hazard",
+    "pk": 24,
+    "fields": {
+      "title": "Wind Storm"
+    }
+  }
+]
