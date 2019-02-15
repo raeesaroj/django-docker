@@ -4,6 +4,7 @@ from loss.models import Loss
 from hazard.models import Hazard
 from event.models import Event
 from federal.models import Ward
+from django.contrib.postgres.fields import JSONField
 
 
 class IncidentSource(models.Model):
@@ -70,6 +71,7 @@ class Incident(TimeStampedModal):
         related_name='incidents',
     )
     street_address = models.CharField(max_length=255, null=True, blank=True, default=None)
+    detail = JSONField(null=True, blank=True, default=None)
 
     def __str__(self):
         return self.title

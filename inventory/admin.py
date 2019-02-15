@@ -8,11 +8,11 @@ from .models import (
 
 @admin.register(Inventory)
 class InventoryAdmin(admin.ModelAdmin):
-    list_display = ['item', 'resource', 'amount']
+    list_display = ['item', 'resource', 'quantity']
 
 
 @admin.register(Item)
-class InventoryAdmin(admin.ModelAdmin):
+class ItemAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         if obj:

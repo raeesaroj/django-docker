@@ -19,14 +19,14 @@ class Item(models.Model):
     LITRE = 'litre'
     METER_SQUARE = 'm2'
     PCS = 'pcs'
-    CARTOON = 'cartoon'
+    CARTOON = 'carton'
 
     UNITS = (
         (KG, 'KG'),
         (LITRE, 'Litre'),
         (METER_SQUARE, 'm2'),
         (PCS, 'PCS'),
-        (CARTOON, 'Cartoon'),
+        (CARTOON, 'Carton'),
     )
     title = models.CharField(max_length=255, unique=True)
     description = models.TextField(null=True, blank=True, default=None)

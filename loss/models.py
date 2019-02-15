@@ -50,8 +50,8 @@ class People(TimeStampedModal):
     age = models.PositiveSmallIntegerField(null=True, blank=True, default=None)
     gender = models.CharField(
         max_length=25,
-        null=True, black=True, default=None,
-        choices=GENDERS,
+        null=True, blank=True, default=None,
+        choices=GENDERS
     )
     below_poverty = models.BooleanField(null=True, blank=True, default=None)
     disabled = models.BooleanField(null=True, blank=True, default=None)
@@ -113,14 +113,6 @@ class Infrastructure(TimeStampedModal):
         (AFFECTED, 'Affected'),
     )
 
-    PARTIAL = 'partial'
-    COMPLETE = 'complete'
-
-    DAMAGE_LEVELS = (
-        (PARTIAL, 'Partial'),
-        (COMPLETE, 'Complete'),
-    )
-
     title = models.CharField(max_length=255, null=True, blank=True, default=None)
     type = models.ForeignKey(InfrastructureType, on_delete=models.PROTECT)
     status = models.CharField(max_length=25, choices=STATUS)
@@ -128,8 +120,6 @@ class Infrastructure(TimeStampedModal):
     infrastructure_value = models.PositiveIntegerField(null=True, blank=True, default=None)
     beneficiary_owner = models.CharField(max_length=255, null=True, blank=True, default=None)
     service_disrupted = models.BooleanField(max_length=255, null=True, blank=True, default=None)
-    damage_level = models.CharField(max_length=25, choices=DAMAGE_LEVELS,
-                                    null=True, blank=True, default=None)
     count = models.PositiveIntegerField(default=1)
     loss = models.ForeignKey(Loss, on_delete=models.CASCADE)
 
