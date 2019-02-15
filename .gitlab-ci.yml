@@ -11,8 +11,8 @@ services:
   - docker:dind
 
 stages:
-  - build
   - test
+  - build
   - release
 
 before_script:
@@ -22,18 +22,22 @@ before_script:
 build:
   stage: build
   script:
-    - docker build --pull -f docker/Dockerfile.prod -t $CONTAINER_TEST_IMAGE .
+    - docker build --pull -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
 
 test:
   script:
-  - cp .env.sample .env
+  - env > .env
   - docker-compose -f external_services.yml up -d
   - ln -s docker-compose.prod.yml docker-compose.yml
   - docker-compose up -d
-  - docker-compose exec server pip install coverage
-  - docker-compose exec server coverage run --source=. manage.py test -v 2
+  - docker-compose exec -T server pip install coverage
+  - docker-compose exec -T server coverage run --source=. manage.py test -v 2
+  - docker-compose exec -T server coverage html
   - mkdir -p coverage && docker cp "$(docker-compose ps -q server)":/code/htmlcov/. coverage/. 
+  # Clean up
+  - docker-compose down
+  - docker-compose -f external_services.yml down
   coverage: '/TOTAL.*\s+(\d+%)$/'
   artifacts:
     paths:
