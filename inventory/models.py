@@ -44,7 +44,7 @@ class Item(models.Model):
 class Inventory(TimeStampedModal):
 
     item = models.ForeignKey(Item, on_delete=models.PROTECT)
-    amount = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField()
     resource = models.ForeignKey(
         Resource,
         related_name='inventories',

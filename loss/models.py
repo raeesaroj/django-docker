@@ -37,9 +37,22 @@ class People(TimeStampedModal):
         (AFFECTED, 'Affected'),
     )
 
+    MALE = 'male'
+    FEMALE = 'female'
+
+    GENDERS = (
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+    )
+
     status = models.CharField(max_length=25, choices=STATUS)
     name = models.CharField(max_length=255, null=True, blank=True, default=None)
     age = models.PositiveSmallIntegerField(null=True, blank=True, default=None)
+    gender = models.CharField(
+        max_length=25,
+        null=True, black=True, default=None,
+        choices=GENDERS,
+    )
     below_poverty = models.BooleanField(null=True, blank=True, default=None)
     disabled = models.BooleanField(null=True, blank=True, default=None)
     count = models.PositiveIntegerField(default=1)
