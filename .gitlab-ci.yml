@@ -11,9 +11,10 @@ services:
   - docker:dind
 
 stages:
-  - test
   - build
+  - test
   - release
+  - deploy
 
 before_script:
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
@@ -33,15 +34,24 @@ test:
   - docker-compose up -d
   - docker-compose exec -T server pip install coverage
   - docker-compose exec -T server coverage run --source=. manage.py test -v 2
-  - docker-compose exec -T server coverage html
+  - docker-compose exec -T server sh -c "coverage html && coverage report"
   - mkdir -p coverage && docker cp "$(docker-compose ps -q server)":/code/htmlcov/. coverage/. 
-  # Clean up
-  - docker-compose down
-  - docker-compose -f external_services.yml down
   coverage: '/TOTAL.*\s+(\d+%)$/'
   artifacts:
     paths:
       - coverage
+
+pages:
+  stage: deploy
+  dependencies:
+    - test
+  script:
+    - mv coverage/ public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - develop
 
 release-image:
   stage: release
