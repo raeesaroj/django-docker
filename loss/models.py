@@ -56,7 +56,7 @@ class People(TimeStampedModal):
     below_poverty = models.BooleanField(null=True, blank=True, default=None)
     disabled = models.BooleanField(null=True, blank=True, default=None)
     count = models.PositiveIntegerField(default=1)
-    loss = models.ForeignKey(Loss, on_delete=models.CASCADE)
+    loss = models.ForeignKey(Loss, related_name='peoples', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -81,7 +81,7 @@ class Family(TimeStampedModal):
     below_poverty = models.BooleanField(null=True, blank=True, default=None)
     count = models.PositiveIntegerField(default=1)
     phone_number = models.CharField(max_length=25, null=True, blank=True, default=None)
-    loss = models.ForeignKey(Loss, on_delete=models.CASCADE)
+    loss = models.ForeignKey(Loss, related_name='families', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -114,14 +114,15 @@ class Infrastructure(TimeStampedModal):
     )
 
     title = models.CharField(max_length=255, null=True, blank=True, default=None)
-    type = models.ForeignKey(InfrastructureType, on_delete=models.PROTECT)
+    type = models.ForeignKey(
+        InfrastructureType, related_name='infrastructures', on_delete=models.PROTECT)
     status = models.CharField(max_length=25, choices=STATUS)
     equipment_value = models.PositiveIntegerField(null=True, blank=True, default=None)
     infrastructure_value = models.PositiveIntegerField(null=True, blank=True, default=None)
     beneficiary_owner = models.CharField(max_length=255, null=True, blank=True, default=None)
     service_disrupted = models.BooleanField(max_length=255, null=True, blank=True, default=None)
     count = models.PositiveIntegerField(default=1)
-    loss = models.ForeignKey(Loss, on_delete=models.CASCADE)
+    loss = models.ForeignKey(Loss, related_name='infrastructures', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -141,10 +142,11 @@ class Livestock(TimeStampedModal):
     )
 
     title = models.CharField(max_length=255, null=True, blank=True, default=None)
-    type = models.ForeignKey(InfrastructureType, on_delete=models.PROTECT)
+    type = models.ForeignKey(InfrastructureType, related_name='livestocks',
+                             on_delete=models.PROTECT)
     status = models.CharField(max_length=25, choices=STATUS)
     count = models.PositiveIntegerField()
-    loss = models.ForeignKey(Loss, on_delete=models.CASCADE)
+    loss = models.ForeignKey(Loss, related_name='livestocks', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

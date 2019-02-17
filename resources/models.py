@@ -1,10 +1,6 @@
 from django.contrib.gis.db import models
 from django.contrib.postgres.fields import JSONField
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey
 from polymorphic.models import PolymorphicModel
-
-from bipad.models import TimeStampedModal
 
 from federal.models import Ward
 
