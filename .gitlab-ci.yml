@@ -1,0 +1,63 @@
+image: docker:stable
+
+variables:
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
+  CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
+  COMPOSE_URL: https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - release
+  - deploy
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  - apk add --update py-pip && pip install docker-compose
+
+build:
+  stage: build
+  script:
+    - docker build --pull -t $CONTAINER_TEST_IMAGE .
+    - docker push $CONTAINER_TEST_IMAGE
+
+test:
+  script:
+  - env > .env
+  - docker-compose -f external_services.yml up -d
+  - ln -s docker-compose.prod.yml docker-compose.yml
+  - docker-compose up -d
+  - docker-compose exec -T server pip install coverage
+  - docker-compose exec -T server coverage run --source=. manage.py test -v 2
+  - docker-compose exec -T server sh -c "coverage html && coverage report"
+  - mkdir -p coverage && docker cp "$(docker-compose ps -q server)":/code/htmlcov/. coverage/. 
+  coverage: '/TOTAL.*\s+(\d+%)$/'
+  artifacts:
+    paths:
+      - coverage
+
+pages:
+  stage: deploy
+  dependencies:
+    - test
+  script:
+    - mv coverage/ public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - develop
+
+release-image:
+  stage: release
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+  only:
+    - develop

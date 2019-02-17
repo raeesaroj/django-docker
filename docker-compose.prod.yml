@@ -3,11 +3,7 @@ version: '3'
 services:
   server:
     env_file: .env
-    build:
-      context: ./docker
-      dockerfile: Dockerfile.local
-    volumes:
-      - .:/code
+    build: .
     ports:
       - "8000:8000"
     external_links:
