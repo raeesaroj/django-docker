@@ -1,0 +1,23 @@
+[
+  {
+    "model": "incident.incidentsource",
+    "pk": "nepal_police",
+    "fields": {
+      "display_name": "Nepal Police"
+    }
+  },
+  {
+    "model": "incident.incidentsource",
+    "pk": "ira",
+    "fields": {
+      "display_name": "Initial Rapid Assesment"
+    }
+  },
+  {
+    "model": "incident.incidentsource",
+    "pk": "other",
+    "fields": {
+      "display_name": "Other"
+    }
+  }
+]

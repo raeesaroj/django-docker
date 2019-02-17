@@ -1,13 +1,20 @@
-version: '3'
+version: '3.4'
 
 services:
   psql-11:
+    container_name: psql-11
     image: mdillon/postgis:11-alpine
     env_file: .env
     volumes:
       - postgres-data:/var/lib/postgresql/data
   redis:
+    container_name: redis
     image: redis:alpine
+    volumes:
+      - redis-data:/data
 
 volumes:
   postgres-data:
+    name: postgres-data
+  redis-data:
+    name: redis-data
