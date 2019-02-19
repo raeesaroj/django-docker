@@ -124,3 +124,6 @@ dmypy.json
 
 #Docker
 docker-compose.yml
+
+#IDE
+.idea
