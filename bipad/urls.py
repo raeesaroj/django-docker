@@ -12,9 +12,22 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
+from hazard.views import HazardViewSet
+from alert.views import AlertViewSet
+from incident.views import IncidentViewSet
+from event.views import EventViewSet
+
 admin.site.site_header = 'BIPAD administration'
 
 router = routers.DefaultRouter()
+router.register(r'hazard', HazardViewSet,
+                base_name='hazard')
+router.register(r'alert', AlertViewSet,
+                base_name='alert')
+router.register(r'incident', IncidentViewSet,
+                base_name='incident')
+router.register(r'event', EventViewSet,
+                base_name='event')
 
 API_VERSION = 'v1'
 

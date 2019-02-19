@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import (
+    viewsets,
+)
+from .serializers import HazardSerializer
+from .models import Hazard
 
-# Create your views here.
+
+class HazardViewSet(viewsets.ModelViewSet):
+    serializer_class = HazardSerializer
+    search_fields = ('title',)
+    queryset = Hazard.objects.all()
