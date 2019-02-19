@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import (
+    viewsets,
+)
+from .serializers import IncidentSerializer
+from .models import Incident
 
-# Create your views here.
+
+class IncidentViewSet(viewsets.ModelViewSet):
+    serializer_class = IncidentSerializer
+    search_fields = ('title',)
+    queryset = Incident.objects.all()
