@@ -47,6 +47,7 @@ class Incident(TimeStampedModal):
         null=True, blank=True, default=None
     )
     source = models.ForeignKey(IncidentSource, on_delete=models.PROTECT)
+    verified = models.BooleanField(default=False)
     # TODO: discuss polygon or multipolygon or simply geometry
     point = models.PointField(null=True, blank=True, default=None)
     polygon = models.MultiPolygonField(null=True, blank=True, default=None)
