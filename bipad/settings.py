@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     'autofixture',
 
+    'django_celery_beat',
     'rest_framework',
     'django_filters',
 
@@ -95,6 +96,9 @@ DATABASES = {
     }
 }
 
+
+# Celery
+CELERY_BROKER_URL = 'redis://redis:6379'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
