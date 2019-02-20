@@ -89,6 +89,9 @@ ipython_config.py
 # pyenv
 .python-version
 
+# Celery
+celerybeat.pid
+
 # celery beat schedule file
 celerybeat-schedule
 
@@ -122,5 +125,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#Docker
+# Docker
 docker-compose.yml
+
+#IDE
+.idea

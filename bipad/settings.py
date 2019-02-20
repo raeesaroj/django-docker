@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     'autofixture',
 
+    'django_celery_beat',
     'rest_framework',
     'django_filters',
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'federal',
     'resources',
     'inventory',
+    'realtime',
 ]
 
 MIDDLEWARE = [
@@ -94,6 +96,9 @@ DATABASES = {
     }
 }
 
+
+# Celery
+CELERY_BROKER_URL = 'redis://redis:6379'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -147,7 +152,7 @@ REST_FRAMEWORK = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kathmandu'
 
 USE_I18N = True
 
