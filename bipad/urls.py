@@ -23,6 +23,10 @@ from federal.views import (
     WardViewSet,
 )
 from resources.views import ResourceViewSet
+from organization.views import (
+    OrganizationViewSet,
+    ProjectViewSet,
+)
 
 admin.site.site_header = 'BIPAD administration'
 
@@ -45,6 +49,10 @@ router.register(r'ward', WardViewSet,
                 base_name='ward')
 router.register(r'resource', ResourceViewSet,
                 base_name='resource')
+router.register(r'organization', OrganizationViewSet,
+                base_name='organization')
+router.register(r'project', ProjectViewSet,
+                base_name='project')
 
 API_VERSION = 'v1'
 
