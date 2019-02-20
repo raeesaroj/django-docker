@@ -16,6 +16,7 @@ from hazard.views import HazardViewSet
 from alert.views import AlertViewSet
 from incident.views import IncidentViewSet
 from event.views import EventViewSet
+from federal.views import ProvinceViewSet, DistrictViewSet, MunicipalityViewSet, WardViewSet
 
 admin.site.site_header = 'BIPAD administration'
 
@@ -28,6 +29,14 @@ router.register(r'incident', IncidentViewSet,
                 base_name='incident')
 router.register(r'event', EventViewSet,
                 base_name='event')
+router.register(r'province', ProvinceViewSet,
+                base_name='province')
+router.register(r'district', DistrictViewSet,
+                base_name='district')
+router.register(r'municipality', MunicipalityViewSet,
+                base_name='municipality')
+router.register(r'ward', WardViewSet,
+                base_name='ward')
 
 API_VERSION = 'v1'
 
