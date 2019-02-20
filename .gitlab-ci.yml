@@ -43,6 +43,16 @@ test:
     paths:
       - coverage
 
+release-image:
+  stage: release
+  script:
+    - docker pull $CONTAINER_TEST_IMAGE
+    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+    - docker push $CONTAINER_RELEASE_IMAGE
+  only:
+    - develop
+    - staging
+
 pages:
   stage: deploy
   dependencies:
@@ -55,11 +65,10 @@ pages:
   only:
     - develop
 
-release-image:
-  stage: release
+deploy:
+  stage: deploy
   script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
-    - docker push $CONTAINER_RELEASE_IMAGE
+    - ./docker/deploy.sh
   only:
-    - develop
+    - staging
+

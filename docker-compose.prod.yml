@@ -2,10 +2,14 @@ version: '3'
 
 services:
   server:
-    env_file: .env
+    image: registry.gitlab.com/bipad/server:latest
     build: .
+    env_file: .env
     ports:
       - "8000:8000"
     external_links:
      - redis
      - psql-11:db
+    volumes:
+      - ./static:/code/static
+      - ./media:/code/media

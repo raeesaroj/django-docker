@@ -1,4 +1,4 @@
-FROM python:3-alpine
+FROM python:3.6-alpine
 
 ENV PYTHONUNBUFFERED 1
 RUN mkdir -p /code/docker
@@ -16,4 +16,4 @@ RUN \
   geos-dev \
   proj4-dev
 
-ENTRYPOINT /code/docker/docker-entrypoint.sh
+ENTRYPOINT /code/docker/docker-entrypoint.local.sh
