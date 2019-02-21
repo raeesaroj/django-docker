@@ -16,7 +16,13 @@ from hazard.views import HazardViewSet
 from alert.views import AlertViewSet
 from incident.views import IncidentViewSet
 from event.views import EventViewSet
-from federal.views import ProvinceViewSet, DistrictViewSet, MunicipalityViewSet, WardViewSet
+from federal.views import (
+    ProvinceViewSet,
+    DistrictViewSet,
+    MunicipalityViewSet,
+    WardViewSet,
+)
+from resources.views import ResourceViewSet
 
 admin.site.site_header = 'BIPAD administration'
 
@@ -37,6 +43,8 @@ router.register(r'municipality', MunicipalityViewSet,
                 base_name='municipality')
 router.register(r'ward', WardViewSet,
                 base_name='ward')
+router.register(r'resource', ResourceViewSet,
+                base_name='resource')
 
 API_VERSION = 'v1'
 
@@ -48,9 +56,12 @@ def get_api_path(path):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    re_path(get_api_path(r'token/$'), TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    re_path(get_api_path(r'token/refresh/$'), TokenRefreshView.as_view(), name='token_refresh'),
-    re_path(get_api_path(r'token/verify/$'), TokenVerifyView.as_view(), name='token_verify'),
+    re_path(get_api_path(r'token/$'), TokenObtainPairView.as_view(),
+            name='token_obtain_pair'),
+    re_path(get_api_path(r'token/refresh/$'),
+            TokenRefreshView.as_view(), name='token_refresh'),
+    re_path(get_api_path(r'token/verify/$'),
+            TokenVerifyView.as_view(), name='token_verify'),
     re_path(get_api_path(''), include(router.urls)),
 ] + static.static(
     settings.MEDIA_URL,
