@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'resources',
     'inventory',
     'realtime',
+    'test',
 ]
 
 MIDDLEWARE = [

@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+
+class TestModel(models.Model):
+
+    description = models.TextField(null=True, blank=True, default=None)
+
+    class Meta:
+        verbose_name_plural = "Test"
+
