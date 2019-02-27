@@ -88,17 +88,19 @@ WSGI_APPLICATION = 'bipad.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+print(os.environ.get('DATABASE_HOST', ''))
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': os.environ.get('DATABASE_NAME', 'postgres'),
         'USER': os.environ.get('DATABASE_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'postgres'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', ''),
         'PORT': os.environ.get('DATABASE_PORT', '5432'),
         'HOST': os.environ.get('DATABASE_HOST', 'db'),
     }
 }
 
+print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
